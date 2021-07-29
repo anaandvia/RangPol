@@ -2,14 +2,12 @@
 <html>
 
 <head>
-	<title>Rangpol-MB</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	<link rel="icon" href="img/Logo-01.png">
-	<title>RangPol</title>
+	<link rel="stylesheet" href="user/asset/assets/css/main.css" />
+	<link rel="stylesheet" href="user/asset/css/bootstrap.min.css" />
+	<link rel="icon" href="admin/asset/img/Logo PR-MB-04.png">
+	<title>PR-MB</title>
 </head>
 
 <body class="landing is-preload">
@@ -26,8 +24,9 @@
 						<a href="#menu" class="menuToggle"><span>Menu</span></a>
 						<div id="menu">
 							<ul>
-								<li><a href="dashboard.php">Dashboard</a></li>
-								<li><a href="peraturan.html">Peraturan</a></li>
+								<li><a id="mybutton" href="any.php">Dashboard</a>
+								</li>
+								<li><a href="peraturan.php">Peraturan</a></li>
 								<li><a href="admin/login.php">Log In</a></li>
 							</ul>
 						</div>
@@ -39,7 +38,8 @@
 		<!-- Banner -->
 		<section id="banner">
 			<div class="inner">
-				<h2>Rangpol</h2>
+				<strong><h2>PR-MB</h2>
+				<h3>Peminjaman Ruangan Jurusan Manajemen Bisnis</h3></strong>
 				<p>Anda Dapat Melakukan<br />
 					Peminjaman Ruangan <br />
 					Secara Cepat Tanpa Ribet</p>
@@ -61,22 +61,25 @@
 						class="icon brands fa-youtube"><span class="label">Youtube</span></a></li>
 			</ul>
 			<ul class="copyright">
-				<li>&copy; Rangpol-MB</li>
+				<li>&copy; PR-MB</li>
 				</li>
 			</ul>
 		</footer>
 
 	</div>
-
+	<style>
+		body {
+			color: white;
+		}
+	</style>
 	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-
+	<script src="user/asset/assets/js/jquery.min.js"></script>
+	<script src="user/asset/assets/js/jquery.scrollex.min.js"></script>
+	<script src="user/asset/assets/js/jquery.scrolly.min.js"></script>
+	<script src="user/asset/assets/js/browser.min.js"></script>
+	<script src="user/asset/assets/js/breakpoints.min.js"></script>
+	<script src="user/asset/assets/js/util.js"></script>
+	<script src="user/asset/assets/js/main.js"></script>
 </body>
 
 </html>
