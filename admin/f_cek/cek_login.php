@@ -2,7 +2,7 @@
 // mengaktifkan session pada php
 session_start();
 // menghubungkan php dengan koneksi database
-include 'koneksi.php';
+include '../koneksi.php';
 
 // menangkap data yang dikirim dari form login
 $username = mysqli_real_escape_string($koneksi, htmlspecialchars($_POST['username']));
@@ -25,26 +25,25 @@ if($cek > 0){
 				$_SESSION['username'] = $username;
 				$_SESSION['level'] = "admin";
 				// alihkan ke halaman dashboard admin
-				header("location:index.php");
+				header("location:../view/index.php");
 			// cek jika user login sebagai peminjam
 			}else if($data['level']=="peminjam"){
 				// buat session login dan username
 				$_SESSION['username'] = $username;
 				$_SESSION['level'] = "peminjam";
 				// alihkan ke halaman dashboard peminjam
-				header("location:../user/dashboard.php");
+				header("location:../../user/view/dashboard.php");
 			}else{
 				// alihkan ke halaman login kembali
-				header("location:login.php?gagal");
+				header("location:../view/login.php?gagal");
 			}	
 		}else{
-			echo "<script>alert('Email Belum Terverifikasi');window.location='login.php';</script>";
+			echo "<script>alert('Email Belum Terverifikasi');window.location='../view/login.php';</script>";
 		}
 	}else{
-		header("location:login.php?gagal");
+		header("location:../view/login.php?gagal");
 	}
 }else{
-	header("location:login.php?gagal");
+	header("location:../view/login.php?gagal");
 }
-mysqli_close($koneksi);
 ?>

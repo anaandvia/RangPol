@@ -1,6 +1,6 @@
 <?php
 // include database connection file
-include 'koneksi.php';
+include '../koneksi.php';
     if(isset($_GET['id'])){
     $id = $_GET['id'];
     } else {
@@ -14,8 +14,8 @@ include 'koneksi.php';
     $sql = "UPDATE fasilitas_ruangan SET id_fasilitas='$nama_fasilitas' , jumlah='$jumlah' , status ='$status' WHERE id_FR='$id_FR'";
     $result = mysqli_query($koneksi,$sql );
         if($result){
-            echo "<script>alert('Data berhasil diupdate.');window.location='f_ruangan.php?id=".$id."';</script>";
+            echo "<script>alert('Data berhasil diupdate.');window.location='../view/f_ruangan.php?id=".$id."';</script>";
         }else{  
-            echo "<script>alert('Data gagal diupdate.');window.location='f_ruangan.php?id=".$id."';</script>";
+            echo "<script>alert('Data gagal diupdate.');window.location='../view/f_ruangan.php?id=".$id."';</script>";
         }
 ?>

@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['level'])){
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     exit;
 }
 
@@ -12,7 +12,7 @@ if(isset($_GET['code'])){
 else {
     die ("Error. No ID Selected!");    
 }
-include "koneksi.php";
+include "../koneksi.php";
 $sql3 = mysqli_query($koneksi, "SELECT * FROM peminjam WHERE code='$code'");
 $data3 = mysqli_fetch_array($sql3);
 ?>
@@ -44,10 +44,10 @@ $data3 = mysqli_fetch_array($sql3);
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-light">
-        <a class="navbar-brand" href="../index.php">
+        <a class="navbar-brand" href="../../index.php">
             <img src="asset/img/Logo PR-MB-01.png" width="80px" alt="">
         </a>
-        <a class="navbar-brand" href="../index.php">
+        <a class="navbar-brand" href="../../index.php">
             <img src="asset/img/Logo-Polibatam.png" width="80px" alt="">
         </a>
     </nav>
@@ -69,7 +69,7 @@ $data3 = mysqli_fetch_array($sql3);
                                 <div class="p-5">
                                     <div class="card bg-gradient-light">
                                         <div class="card-body">
-                                            <form class="user" method="POST" action="up_new_pass.php?code=".$code>
+                                            <form class="user" method="POST" action="../f_update/up_new_pass.php?code=".$code>
                                             <input name="nim" type="hidden" value="<?= $data3['nim']?>">
                                             <input name="code" type="hidden" value="<?= $data3['code']?>">
                                                 <div class="form-group">

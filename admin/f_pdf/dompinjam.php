@@ -1,6 +1,7 @@
 <?php
-include('koneksi.php');
-require_once("asset/dompdf/autoload.inc.php");
+include '../akses.php';
+include('../koneksi.php');
+require_once("dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 $query = mysqli_query($koneksi, "SELECT peminjam.nim, peminjam.nama, peminjam.no_tlp, ruangan.no_ruangan ,ruangan.id_ruangan, peminjaman.nama_kegiatan , peminjaman.tgl_acara , peminjaman.tgl_akhir_acara , detail_acara.PJ , detail_acara.PA , detail_acara.PK , detail_acara.n_tamu , detail_acara.sifat_acara , detail_acara.jenis_acara , detail_acara.keterangan , peminjaman.status , peminjaman.id_peminjaman

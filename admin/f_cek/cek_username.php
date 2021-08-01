@@ -2,16 +2,16 @@
 // mengaktifkan session pada php
 session_start();
 // menghubungkan php dengan koneksi database
-include 'koneksi.php';
+include '../koneksi.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
 
-    require 'asset/PHPMailer/src/Exception.php';
-    require 'asset/PHPMailer/src/OAuth.php';
-    require 'asset/PHPMailer/src/PHPMailer.php';
-    require 'asset/PHPMailer/src/POP3.php';
-    require 'asset/PHPMailer/src/SMTP.php';
+    require 'PHPMailer/src/Exception.php';
+    require 'PHPMailer/src/OAuth.php';
+    require 'PHPMailer/src/PHPMailer.php';
+    require 'PHPMailer/src/POP3.php';
+    require 'PHPMailer/src/SMTP.php';
 
 // menangkap data yang dikirim dari form login
 $username = htmlspecialchars($_POST['nim']);
@@ -27,7 +27,7 @@ $code = $data['code'];
 $cek = mysqli_num_rows($login);
 // cek apakah username dan password di temukan pada database
         if($cek == 0){
-            header("location:forgot_password.php?gagal");
+            header("location:../view/forgot_password.php?gagal");
         }else{
         
         //Create a new PHPMailer instance
@@ -77,7 +77,7 @@ $cek = mysqli_num_rows($login);
 
         //Read an HTML message body from an external file, convert referenced images to embedded,
         //convert HTML into a basic plain-text alternative body
-        $body = "Hi, ".$nama."<br>Lupa Password ?? Klik link berikut untuk membuat password baru anda : <br> http://localhost/Rangpol1/admin/ganti_password.php?code=".$code;
+        $body = "Hi, ".$nama."<br>Lupa Password ?? Klik link berikut untuk membuat password baru anda : <br> http://localhost/PR-MB/admin/view/ganti_password.php?code=".$code;
         $mail->Body = $body;
         //Replace the plain text body with one created manually
         $mail->AltBody = 'Verification Account';
@@ -86,12 +86,7 @@ $cek = mysqli_num_rows($login);
         if (!$mail->send()) {
             echo 'Mailer Error: '. $mail->ErrorInfo;
         } else {
-            echo "<script>alert('Silahkan CEK EMAIL ANDA , UNTUK MEMBUAT PASSWORD BARU');window.location='login.php';</script>";
-            //Section 2: IMAP
-            //Uncomment these to save your message in the 'Sent Mail' folder.
-            #if (save_mail($mail)) {
-            #    echo "Message saved!";
-            #}
+            echo "<script>alert('Silahkan CEK EMAIL ANDA , UNTUK MEMBUAT PASSWORD BARU');window.location='../view/login.php';</script>";
         }
 
         }

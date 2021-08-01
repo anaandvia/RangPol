@@ -1,6 +1,6 @@
 <?php
 // include database connection file
-include 'koneksi.php';
+include '../koneksi.php';
 // ambil dari inputan/pilihan user
 $id_peminjaman = $_POST['id_peminjaman'];
 $id = $_POST['id'];
@@ -19,9 +19,9 @@ $sql3 = mysqli_query($koneksi,"UPDATE ruangan SET status='1' WHERE id_ruangan ='
 
 // kondisi
 if($sql && $sql2 && $sql3 == true){
-    echo "<script>alert('Data berhasil disimpan.');window.location='pengembalian.php';</script>";
+    echo "<script>alert('Data berhasil disimpan.');window.location='../view/pengembalian.php';</script>";
 }else{
-    echo "<script>alert('Data gagal disimpan.');window.location='pengembalian.php';</script>";
+    echo "<script>alert('Data gagal disimpan.');window.location='../view/pengembalian.php';</script>";
 
 }
 ?>

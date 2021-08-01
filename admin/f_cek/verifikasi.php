@@ -1,6 +1,5 @@
 <?php
-    require('koneksi.php');
-
+    require('../koneksi.php');
     if(isset($_GET['code'])){
         $code = $_GET['code'];
         $sql = "SELECT * FROM peminjam where code = '$code'";
@@ -11,15 +10,15 @@
             $sql =  "UPDATE peminjam set v_email=1 where id_peminjam=$id";
             $query = mysqli_query($koneksi,$sql);
             if($query){
-                header("location:v_berhasil.php");
+                header("location:../view/v_berhasil.php");
             }else{
-                echo "<script>alert('Verifikasi Gagal'.$query);window.location='login.php';</script>";
+                echo "<script>alert('Verifikasi Gagal'.$query);window.location='../view/login.php';</script>";
             }
         }else {
-            echo "<script>alert('CODE TIDAK DITEMUKAN ATAU TIDAK VALID');window.location='login.php';</script>";
+            echo "<script>alert('CODE TIDAK DITEMUKAN ATAU TIDAK VALID');window.location='../view/login.php';</script>";
         }
     }else {
-        echo "<script>alert('CODE TIDAK DITEMUKAN');window.location='login.php';</script>";
+        echo "<script>alert('CODE TIDAK DITEMUKAN');window.location='../view/login.php';</script>";
     }
 
 ?>

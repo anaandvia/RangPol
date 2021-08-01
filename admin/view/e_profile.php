@@ -31,7 +31,7 @@
 
     <!-- akses login -->
     <?php 
-        include 'akses.php';
+        include '../akses.php';
 	?>
 
     <!-- Page Wrapper -->
@@ -41,7 +41,7 @@
         <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../index.php">
                 <div class="sidebar-brand-icon ">
                     <img src="asset/img/Logo PR-MB-02.png" style="width :80px;"></img>
                 </div>
@@ -105,6 +105,13 @@
                 </a>
             </li>
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="peraturan.php">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Peraturan</span>
+                </a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -130,7 +137,7 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3 bg-warning">
                         <i class="fa fa-bars" style="color: white;"></i>
                     </button>
-                    <a class="navbar-brand mr-auto" href="../index.php">
+                    <a class="navbar-brand mr-auto" href="../../index.php">
                         <img src="asset/img/Logo-Polibatam.png" width="50px" alt="">
                     </a>
 
@@ -168,7 +175,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <?php
-                                include "koneksi.php";
+                                include "../koneksi.php";
                                 $sql5     ="SELECT a.* , b.* , c.no_ruangan , d.nim , d.nama FROM peminjaman a 
                                 JOIN pengembalian b ON b.id_peminjaman=a.id_peminjaman
                                 JOIN ruangan c ON c.id_ruangan = a.id_ruangan
@@ -286,7 +293,7 @@
                     <!-- Content Row -->
                     <div class="row">
                         <div class="col-lg-4">
-                            <form action="update_profile.php" method="POST" enctype="multipart/form-data">
+                            <form action="../f_update/update_profile.php" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="fotolama" id="fotolama" value="<?= $data['foto_u']?>">
                                 <div class="form-group row">
                                     <div class="col-lg-12 ">
@@ -370,7 +377,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body" align="left">
-                                    <form action="edit_pass.php" method="post">
+                                    <form action="../f_update/edit_pass.php" method="post">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label style="color:black;">Username</label>

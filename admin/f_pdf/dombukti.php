@@ -1,14 +1,13 @@
 <?php
-include('koneksi.php');
-
-
+include('../koneksi.php');
+include '../akses.php';
 if(isset($_GET['id'])){
     $id = $_GET['id'];
 }
 else {
     die ("Error. No ID Selected!");    
 }
-require_once("asset/dompdf/autoload.inc.php");
+require_once("dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 
@@ -34,7 +33,7 @@ $dayList = array(
 );
 $html = '<table border="1" width="100%" cellspacing="0" cellpadding="2" style="font-size:12px;">
     <tr align="center" style="font-weight:bold;">
-    <td colspan="2" width="120px" heigh="100px"><img src="asset/img/logo.png" width="70px"></td>
+    <td colspan="2" width="120px" heigh="100px"><img src="../view/asset/img/logo.png" width="70px"></td>
     <td scope="col">BO.27.2.1-V4</td>
     <td scope="col" width="120px" heigh="100px">HAL.1/1</td>
     </tr>

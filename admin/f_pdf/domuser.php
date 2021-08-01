@@ -1,6 +1,7 @@
 <?php
-include('koneksi.php');
-require_once("asset/dompdf/autoload.inc.php");
+include '../akses.php';
+include('../koneksi.php');
+require_once("dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 $query = mysqli_query($koneksi,"SELECT*FROM peminjam WHERE level = 'peminjam'");
@@ -23,7 +24,7 @@ while($row = mysqli_fetch_array($query))
     <td>".ucwords(strtolower($row['nama']))."</td>
     <td>".$row['email']."</td>
     <td>".$row['no_tlp']."</td>
-    <td><img src ='asset/img/profile/".$row['foto_u']."' width = '100' height = '100'></td>
+    <td><img src ='../view/asset/img/profile/".$row['foto_u']."' width = '100' height = '100'></td>
     </tr>";
     $no++;
 }

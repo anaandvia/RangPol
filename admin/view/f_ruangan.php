@@ -7,7 +7,7 @@
     else {
         die ("Error. No ID Selected!");    
     }
-    include "koneksi.php";
+    include "../koneksi.php";
     $sql7 = mysqli_query($koneksi, "SELECT * FROM ruangan WHERE id_ruangan = '$id'");
     $data7=mysqli_fetch_array($sql7);
 ?>
@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <<link rel="icon" href="asset/img/Logo PR-MB-04.png">
+    <link rel="icon" href="asset/img/Logo PR-MB-04.png">
     <title>Admin PR-MB | Fasilitas Ruangan</title>
 
     <!-- Custom fonts for this template-->
@@ -53,7 +53,7 @@
 
     <!-- akses login -->
     <?php 
-        include 'akses.php';
+        include '../akses.php';
 	?>
 
     <!-- Page Wrapper -->
@@ -63,7 +63,7 @@
         <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../index.php">
                 <div class="sidebar-brand-icon ">
                     <img src="asset/img/Logo PR-MB-02.png" style="width :80px;"></img>
                 </div>
@@ -108,8 +108,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="ruangan.php">Data Ruangan</a>
                         <a class="collapse-item" href="lt.php">Data Lantai</a>
-                        <a class="collapse-item" href="fasilitas.php">Data Fasilitas</a>
-                        <a class="collapse-item" href="f_ruangan.php">Data Fasilitas Ruangan</a>
+                        <a class="collapse-item" href="fasilitas.php">Data Fasilitas</a> 
                         
                     </div>
                 </div>
@@ -139,6 +138,13 @@
                 </a>
             </li>
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="peraturan.php">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Peraturan</span>
+                </a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -165,7 +171,7 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3 bg-warning">
                         <i class="fa fa-bars" style="color: white;"></i>
                     </button>
-                    <a class="navbar-brand mr-auto" href="../index.php">
+                    <a class="navbar-brand mr-auto" href="../../index.php">
                         <img src="asset/img/Logo-Polibatam.png" width="50px" alt="">
                     </a>
 
@@ -203,7 +209,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <?php
-                                include "koneksi.php";
+                                include "../koneksi.php";
                                 $sql5     ="SELECT a.* , b.* , c.no_ruangan , d.nim , d.nama FROM peminjaman a 
                                 JOIN pengembalian b ON b.id_peminjaman=a.id_peminjaman
                                 JOIN ruangan c ON c.id_ruangan = a.id_ruangan
@@ -337,9 +343,9 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include 'koneksi.php';
+                                        include '../koneksi.php';
                                         // query data
-                                        $sql = mysqli_query($koneksi, "SELECT a.* , b.no_ruangan , b.nama_ruangan ,c.id_FR, c.jumlah , c.status FROM fasilitas_ruangan c
+                                        $sql = mysqli_query($koneksi, "SELECT a.* , b.no_ruangan , b.nama_ruangan ,c.id_FR, c.jumlah , c.status_fr FROM fasilitas_ruangan c
                                         JOIN fasilitas a ON c.id_fasilitas = a.id_fasilitas 
                                         JOIN ruangan b ON c.id_ruangan = b.id_ruangan WHERE c.id_ruangan = '$id'");
 
@@ -351,9 +357,9 @@
                                             <td><?php echo $data['nama_fasilitas']; ?> (<?php echo $data['detail_fasilitas']; ?>)</td>
                                             <td><?php echo $data['jumlah']; ?></td>
                                             <td><?php 
-                                                if ($data['status']==1) {
+                                                if ($data['status_fr']==1) {
                                                     echo "<p style='color:green;'>Available</p>";
-                                                }else if ($data['status']==0) {
+                                                }else if ($data['status_fr']==0) {
                                                     echo "<p style='color:red;'>Not Available</p>";
                                                 }
                                             ?></td>
@@ -380,7 +386,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="del_FR.php?id=<?=$id?>" method="post">
+                                                            <form action="../f_hapus/del_FR.php?id=<?=$id?>" method="post">
                                                                 Apakah anda yakin ingin menghapus fasilitas
                                                                 <b><?= $data['nama_fasilitas']; ?></b>?
                                                                 <div class="modal-footer">
@@ -412,7 +418,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="update_FR.php?id=<?=$id?>" method="post">
+                                                        <form action="../f_update/update_FR.php?id=<?=$id?>" method="post">
                                                             <input type="hidden" name="id_FR" id="id_FR"
                                                                 value="<?= $data['id_FR']?>">
                                                             <div class="form-row">
@@ -519,7 +525,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="simp_FR.php?id=<?=$id?>" method="post" enctype="multipart/form-data">
+                            <form action="../f_tambah/simp_FR.php?id=<?=$id?>" method="post" enctype="multipart/form-data">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="nama_fasilitas">Nama Fasilitas</label>

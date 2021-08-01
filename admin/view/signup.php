@@ -31,10 +31,10 @@ session_start();
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-light">
-        <a class="navbar-brand" href="../index.php">
+        <a class="navbar-brand" href="../../index.php">
             <img src="asset/img/Logo PR-MB-01.png" width="80px" alt="">
         </a>
-        <a class="navbar-brand" href="../index.php">
+        <a class="navbar-brand" href="../../index.php">
             <img src="asset/img/Logo-Polibatam.png" width="80px" alt="">
         </a>
     </nav>
@@ -47,7 +47,7 @@ session_start();
                     <hr color="linear-gradient(-90deg, #164A41 6.67%, #4D774E 56.77%, #9DC88D 106.67%);">
                     <div class="row">
                         <div class="col-lg-6">
-                            <form action="daftar.php" id="regis" method="post">
+                            <form action="../f_cek/daftar.php" id="regis" method="post">
                                 <div class="form-group">
                                     <label class="details">NIM/NIP</label>
                                     <input type="text" class="form-control" id="nim" name="nim"
@@ -83,7 +83,7 @@ session_start();
                                 <label class="details" for="id_ruangan">JURUSAN</label>
                                 <select class="form-control" id="id_jurusan" name="id_jurusan" required>
                                     <?php
-                                    include "koneksi.php";
+                                    include "../koneksi.php";
                                     $sql2 = mysqli_query($koneksi, "SELECT * FROM jurusan");
                                     while($row=mysqli_fetch_array($sql2)){
                                         echo "<option value='$row[id_jurusan]'>$row[nama_jurusan]</option>\n";

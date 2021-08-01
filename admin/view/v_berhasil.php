@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['level'])){
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     exit;
 }
 
@@ -35,10 +35,10 @@ if(isset($_SESSION['level'])){
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-light">
-        <a class="navbar-brand" href="../index.php">
+        <a class="navbar-brand" href="../../index.php">
             <img src="asset/img/Logo PR-MB-01.png" width="80px" alt="">
         </a>
-        <a class="navbar-brand" href="../index.php">
+        <a class="navbar-brand" href="../../index.php">
             <img src="asset/img/Logo-Polibatam.png" width="80px" alt="">
         </a>
     </nav>

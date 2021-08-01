@@ -1,6 +1,6 @@
 <?php
 // include database connection file
-include '../admin/koneksi.php';
+include '../../admin/koneksi.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $nim = htmlspecialchars($_POST['nim']);
     $nama = htmlspecialchars($_POST['nama']);
@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $fotoB = $random.'-'.$foto;
         $tmpName = $_FILES['img']['tmp_name']; 
 			if(in_array($ekstensifoto, $ekstensifotoV) == true){
-				$FotoB = move_uploaded_file($tmpName, '../admin/asset/img/profile/'. $fotoB);
+				$FotoB = move_uploaded_file($tmpName, '../../admin/view/asset/img/profile/'.$fotoB);
 				$query ="UPDATE peminjam SET nama='$nama',email='$email', no_tlp='$no_tlp',foto_u='$fotoB' WHERE nim='$nim'";
 				$result = mysqli_query($koneksi, $query);
 				// periska query apakah ada error
@@ -27,15 +27,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				} else {
 					//tampil alert dan akan redirect ke halaman index.php
 					//silahkan ganti index.php sesuai halaman yang akan dituju
-					if (file_exists('../admin/asset/img/profile'. $fotolama)) {
-						unlink('../admin/asset/img/profile'. $fotolama);
+					if (file_exists('../../admin/view/asset/img/profile/'.$fotolama)) {
+						unlink('../../admin/view/asset/img/profile/'.$fotolama);
 					}
-					echo "<script>alert('Data berhasil diubah.');window.location='profile.php';</script>";
+					echo "<script>alert('Data berhasil diubah.');window.location='../view/profile.php';</script>";
 				}
 			}
 			else {
 				//jika file ekstensi tidak jpg dan png maka alert ini yang tampil
-				echo "<script>alert('Ekstensi gambar yang boleh hanya jpg atau png.');window.location='e_profile.php';</script>";
+				echo "<script>alert('Ekstensi gambar yang boleh hanya jpg atau png.');window.location='../view/e_profile.php';</script>";
 			}
     }else{
         $foto_u = $fotolama;
@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         } else {
           //tampil alert dan akan redirect ke halaman index.php
           //silahkan ganti index.php sesuai halaman yang akan dituju
-            echo "<script>alert('Data berhasil diubah.');window.location='profile.php';</script>";
+            echo "<script>alert('Data berhasil diubah.');window.location='../view/profile.php';</script>";
         }
 		
     }

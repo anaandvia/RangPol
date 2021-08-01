@@ -1,6 +1,6 @@
 <?php
 // include database connection file
-include '../admin/koneksi.php';
+include '../../admin/koneksi.php';
 $id2 = $_POST['id2'];
 $tgl_pengembalian = $_POST['tgl_pengembalian'];
 $foto_b = isset($_FILES['foto_b']['name']) ? $_FILES['foto_b']['name'] : '';
@@ -15,7 +15,7 @@ if($foto_b != "") {
     $fotoB = $random.'-'.$foto_b;
     $tmpName = $_FILES['foto_b']['tmp_name'];   
     if(in_array($ekstensifoto, $ekstensifotoV) === true)  {
-          move_uploaded_file($tmpName, '../admin/asset/img/bukti/'. $fotoB); //memindah file gambar ke folder gambar
+          move_uploaded_file($tmpName, '../../admin/view/asset/img/bukti/'.$fotoB); //memindah file gambar ke folder gambar
                     
                   // jalankan query UPDATE berdasarkan ID yang produknya kita edit
                 $query ="UPDATE pengembalian SET tgl_pengembalian='$tgl_pengembalian',foto_b='$fotoB',kendala='$kendala', status_kembali=2 WHERE id='$id2'";
@@ -25,13 +25,13 @@ if($foto_b != "") {
                     die ("Query gagal dijalankan: ".mysqli_error($koneksi).
                         " - ".mysqli_error($koneksi));
                 } else {
-                    echo "<script>alert('Data berhasil dikirimkan. Tunggu konfirmasi Admin');window.location='history.php';</script>";
+                    echo "<script>alert('Data berhasil dikirimkan. Tunggu konfirmasi Admin');window.location='../view/history.php';</script>";
                 }
             } else {     
              //jika file ekstensi tidak jpg dan png maka alert ini yang tampil
-                echo "<script>alert('Ekstensi gambar yang boleh hanya jpg atau png.');window.location='kembalikan.php?id='.$id2.'';</script>";
+                echo "<script>alert('Ekstensi gambar yang boleh hanya jpg atau png.');window.location='../view/kembalikan.php?id='.$id2.'';</script>";
             }
     } else {
-        echo "<script>alert('Pilih Gambar Terlebih dahulu.');window.location='kembalikan.php?id='.$id2.'';</script>";
+        echo "<script>alert('Pilih Gambar Terlebih dahulu.');window.location='../view/kembalikan.php?id='.$id2.'';</script>";
 }
 ?>

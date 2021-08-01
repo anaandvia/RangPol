@@ -7,10 +7,13 @@
     else{
         die ("Error. No ID Selected!");    
     }
-    include "../admin/koneksi.php";
+    include "../koneksi.php";
     $sql3 = mysqli_query($koneksi, "SELECT * FROM detail_ruangan WHERE id_ruangan='$id2'");
     $data3 = mysqli_fetch_array($sql3);
+    $sql7 = mysqli_query($koneksi, "SELECT * FROM ruangan WHERE id_ruangan='$id2'");
+    $data7 = mysqli_fetch_array($sql7);
 ?>
+
 <head>
 
     <meta charset="utf-8">
@@ -53,7 +56,7 @@
 
     <!-- akses login -->
     <?php 
-        include 'akses.php';
+        include '../akses.php';
 	?>
 
     <!-- Page Wrapper -->
@@ -63,7 +66,7 @@
         <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../index.php">
                 <div class="sidebar-brand-icon ">
                     <img src="asset/img/Logo PR-MB-02.png" style="width :80px;"></img>
                 </div>
@@ -108,7 +111,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="lt.php">Data Lantai</a>
                         <a class="collapse-item" href="fasilitas.php">Data Fasilitas</a>
-                        <a class="collapse-item" href="f_ruangan.php">Data Fasilitas Ruangan</a>
                         <a class="collapse-item" href="ruangan.php">Data Ruangan</a>
                     </div>
                 </div>
@@ -138,6 +140,13 @@
                 </a>
             </li>
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="peraturan.php">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Peraturan</span>
+                </a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -164,7 +173,7 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3 bg-warning">
                         <i class="fa fa-bars" style="color: white;"></i>
                     </button>
-                    <a class="navbar-brand mr-auto" href="../index.php">
+                    <a class="navbar-brand mr-auto" href="../../index.php">
                         <img src="asset/img/Logo-Polibatam.png" width="50px" alt="">
                     </a>
 
@@ -202,7 +211,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <?php
-                                include "koneksi.php";
+                                include "../koneksi.php";
                                 $sql5     ="SELECT a.* , b.* , c.no_ruangan , d.nim , d.nama FROM peminjaman a 
                                 JOIN pengembalian b ON b.id_peminjaman=a.id_peminjaman
                                 JOIN ruangan c ON c.id_ruangan = a.id_ruangan
@@ -285,7 +294,8 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span
                                     class="mr-2 d-none d-lg-inline text-white small"><?php echo $data['nama']; ?></span>
-                                <img class="img-profile rounded-circle" src="asset/img/profile/<?php echo $data['foto_u']; ?>">
+                                <img class="img-profile rounded-circle"
+                                    src="asset/img/profile/<?php echo $data['foto_u']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -312,15 +322,26 @@
                     style="background-color: linear-gradient(90deg, #164A41 6.67%, #4D774E 56.77%, #9DC88D 106.67%)">
 
                     <!-- Page Heading -->
-                    <h1 class="text-white">Data Ruangan</h1>
+                    <h1 class="text-white">Detail Data Ruangan <?= $data7['no_ruangan']?></h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <form class="form-inline my-2 my-lg-0 ml-auto">
-                                <a href="#" id="tambahroom" class="btn btn-warning mb-2 btndata">
-                                    <i class="fas fa-plus-circle mr-2"></i>TAMBAH DATA RUANGAN</a>&nbsp;
-                                <a href="laporan_ruangan.php" class="btn btn-warning mb-2 btndata">
-                                    <i class="fas fa-print mr-2"></i>CETAK DATA RUANGAN</a>
+                        <form class="form-inline my-2 my-lg-0 ml-auto">
+                        <?php
+                        include 'koneksi.php';
+                        $sql5 = "SELECT * FROM detail_ruangan WHERE id_ruangan = '$id2'";
+                        $result = mysqli_query($koneksi,$sql5);
+                        $cek1 = mysqli_num_rows($result);
+                            if ($cek1 == 0){
+                                echo '
+                                <a href="#" id="tambahdroom" class="btn btn-warning mb-2 btndata">
+                                <i class="fas fa-plus-circle mr-2"></i>TAMBAH DATA DETAIL RUANGAN</a>&nbsp;';
+                            }else{
+                                echo '';
+                            }
+                            ?>
+                                <a href="../f_pdf/domdetailruangan.php?id=<?=$data7['id_ruangan']?>" class="btn btn-warning mb-2 btndata">
+                                    <i class="fas fa-print mr-2"></i>CETAK DATA DETAIL RUANGAN</a>&nbsp;
                             </form>
                         </div>
                         <div class="card-body">
@@ -342,7 +363,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include 'koneksi.php';
+                                        include '../koneksi.php';
                                         // query data
                                         $sql = mysqli_query($koneksi, "SELECT a.* , b.no_ruangan , b.nama_ruangan  FROM detail_ruangan a 
                                         JOIN ruangan b ON a.id_ruangan = b.id_ruangan WHERE a.id_ruangan='$id2'
@@ -375,7 +396,7 @@
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="label">Hapus Data Ruangan
+                                                            <h5 class="modal-title" id="label">Hapus Data Detail Ruangan
                                                             </h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
@@ -383,7 +404,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="del_DR.php" method="post"
+                                                            <form action="../f_hapus/del_DR.php?id=<?=$id2?>" method="post"
                                                                 enctype="multipart/form-data">
                                                                 Apakah anda yakin ingin menghapus data detail
                                                                 <b><?= $data['no_ruangan']; ?></b>?
@@ -400,9 +421,8 @@
                                             <!-- /ModalDelete -->
                                         </tr>
                                         <!-- Modal Edit -->
-                                        <div class="modal fade" id="EditDR<?php echo $data['id_DR']; ?>"
-                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                            aria-hidden="true">
+                                        <div class="modal fade" id="EditDR<?php echo $data['id_DR']; ?>" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -416,7 +436,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="update_DR.php" method="post">
+                                                        <form action="../f_update/update_DR.php?id=<?=$id2?>" method="post">
                                                             <input type="hidden" name="id_DR" id="id_DR"
                                                                 value="<?= $data['id_DR']?>">
                                                             <div class="form-row">
@@ -454,17 +474,15 @@
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6">
                                                                     <label>PIC 1</label>
-                                                                    <input type="text" name="PIC"
-                                                                        class="form-control" id="PIC"
-                                                                        value="<?= $data['PIC']?>">
+                                                                    <input type="text" name="PIC" class="form-control"
+                                                                        id="PIC" value="<?= $data['PIC']?>">
                                                                 </div>
                                                             </div>
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6">
                                                                     <label>PIC 2</label>
-                                                                    <input type="text" name="PIC2"
-                                                                        class="form-control" id="PIC2"
-                                                                        value="<?= $data['PIC2']?>">
+                                                                    <input type="text" name="PIC2" class="form-control"
+                                                                        id="PIC2" value="<?= $data['PIC2']?>">
                                                                 </div>
                                                             </div>
                                                             <div class="form-row">
@@ -501,7 +519,7 @@
                             buttons: [{
                                     extend: 'excelHtml5',
                                     className: 'btn-success bg-success',
-                                    title: 'Data Detail Ruangan',
+                                    title: 'Detail Data Ruangan <?= $data7['no_ruangan']?>',
                                     exportOptions: {
                                         columns: [0, 1, 2, 3, 4, 5, 6, 7]
                                     }
@@ -509,7 +527,7 @@
                                 {
                                     extend: 'pdfHtml5',
                                     className: 'btn-danger bg-danger',
-                                    title: 'Data Detail Ruangan',
+                                    title: 'Detail Data Ruangan <?= $data7['no_ruangan']?>',
                                     download: 'open',
                                     exportOptions: {
                                         columns: [0, 1, 2, 3, 4, 5, 6, 7]
@@ -528,71 +546,67 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="label">Input New Data</h5>
+                            <h5 class="modal-title" id="label">
+                                Input New Data</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="simp_ruangan.php" method="post" enctype="multipart/form-data">
+                            <form action="../f_tambah/tambah_DR.php?id=<?=$id2?>" method="post">
                                 <div class="form-row">
+                                <input type="hidden" name="id_ruangan" class="form-control" id="id_ruangan" value="<?= $data7['id_ruangan']?>">
                                     <div class="form-group col-md-6">
                                         <label>No Ruangan</label>
-                                        <input type="text" name="no_ruangan" class="form-control" id="no_ruangan">
+                                        <input type="text" name="no_ruangan" class="form-control" id="no_ruangan"
+                                            value="<?= $data7['no_ruangan']?>" readonly>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label>Nama Ruangan</label>
-                                        <input type="text" name="nama_ruangan" class="form-control" id="nama_ruangan">
+                                        <input type="text" name="nama_ruangan" class="form-control" id="nama_ruangan"
+                                            value="<?= $data7['nama_ruangan']?>" readonly>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="lantai">Lantai</label>
-                                        <select class="form-control" id="lantai" name="lantai" required>
-                                            <?php
-                                        $sql2 = mysqli_query($koneksi, "SELECT * FROM lantai");
-                                        while($row=mysqli_fetch_array($sql2)){
-                                            echo "<option value='$row[no_lantai]'>$row[no_lantai]</option>\n";
-                                        }
-                                        ?>
-                                        </select>
+                                        <label>Fungsi</label>
+                                        <input type="text" name="fungsi" class="form-control" id="fungsi">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label>Kapasitas</label>
-                                        <input type="text" name="kapasitas" class="form-control" id="kapasitas">
+                                        <label>Keperluan</label>
+                                        <input type="text" name="keperluan" class="form-control" id="keperluan">
                                     </div>
                                 </div>
-                                <label>Foto Depan</label>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <input type="file" id="foto2" name="foto2">
+                                        <label>PIC 1</label>
+                                        <input type="text" name="PIC" class="form-control" id="PIC">
                                     </div>
                                 </div>
-                                <label>Foto Belakang</label>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <input type="file" id="foto" name="foto">
+                                        <label>PIC 2</label>
+                                        <input type="text" name="PIC2" class="form-control" id="PIC2" >
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="status">Status</label>
-                                    <select class="form-control" id="status" name="status">
-                                        <option value="1">Available</option>
-                                        <option value="0">Not Available</option>
-                                    </select>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Koordinator LAB</label>
+                                        <input type="text" name="KoorLAB" class="form-control" id="KoorLAB">
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" name="simpan" class="btn btn-warning">SIMPAN</button>
+                                    <button type="submit" name="ubah" class="btn btn-warning">SIMPAN</button>
                             </form>
                         </div>
                     </div>
                 </div>
-
             </div>
+            <!-- /Modal Tambah -->
             <!-- /.container-fluid -->
 
         </div>
@@ -663,7 +677,7 @@
     <script src="asset/js/sb-admin-2.min.js"></script>
     <script>
         // Tambah
-        $("#tambahroom").click(function () {
+        $("#tambahdroom").click(function () {
             $("#ModalTambah").modal();
         });
     </script>

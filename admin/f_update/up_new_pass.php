@@ -1,5 +1,5 @@
 <?php
-    include "koneksi.php";
+    include "../koneksi.php";
     error_reporting(0);
     //proses ganti password
     
@@ -10,7 +10,7 @@
 
     //validasi input konfirm password
     if ($password_baru != $konf_password) {
-        echo "<script>alert('Password Tidak Sama Ulangi.');window.location='ganti_password.php?code=$code';</script>";   
+        echo "<script>alert('Password Tidak Sama Ulangi.');window.location='../view/ganti_password.php?code=$code';</script>";   
     }
     else {
     //update data
@@ -19,9 +19,9 @@
     $sql2 = mysqli_query ($koneksi,$query2);
     //setelah berhasil update
     if ($sql2) {
-        echo "<script>alert('Password Berhasil Diubah.');window.location='login.php';</script>";   
+        echo "<script>alert('Password Berhasil Diubah.');window.location='../view/login.php';</script>";   
     } else {
-        echo "<script>alert('Password Gagal Diubah');window.location='login.php';</script>";   
+        echo "<script>alert('Password Gagal Diubah');window.location='../view/login.php';</script>";   
     }
     }
 ?>

@@ -1,6 +1,7 @@
 <?php
-include('koneksi.php');
-require_once("asset/dompdf/autoload.inc.php");
+include '../akses.php';
+include('../koneksi.php');
+require_once("dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 $query = mysqli_query($koneksi, "SELECT peminjaman.id_peminjaman,peminjam.nim,peminjaman.tgl_acara , peminjaman.tgl_akhir_acara , peminjaman.status ,pengembalian.* 
@@ -29,7 +30,7 @@ while($data2 = mysqli_fetch_array($query))
     <td>".$data2['nim']."</td>
     <td>".$data2['tgl_acara']." -<br>".$data2['tgl_akhir_acara']."</td>
     <td>".$data2['tgl_pengembalian']."</td>
-    <td><img src ='../user/asset/img/".$data2['foto_b']."' width = '100' height = '100'></td>
+    <td><img src ='../view/asset/img/bukti/".$data2['foto_b']."' width = '100' height = '100'></td>
     <td>".$data2['kendala']."</td>
     </tr>";
     $no++;

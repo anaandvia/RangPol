@@ -43,7 +43,7 @@
 
     <!-- akses login -->
     <?php 
-        include 'akses.php';
+        include '../akses.php';
 	?>
 
     <!-- Page Wrapper -->
@@ -53,7 +53,7 @@
         <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../index.php">
                 <div class="sidebar-brand-icon ">
                     <img src="asset/img/Logo PR-MB-02.png" style="width :80px;"></img>
                 </div>
@@ -98,7 +98,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="lt.php">Data Lantai</a>
                         <a class="collapse-item" href="fasilitas.php">Data Fasilitas</a>
-                        <a class="collapse-item" href="detail_r.php">Data Detail Ruangan</a>
                         <a class="collapse-item" href="ruangan.php">Data Ruangan</a>
                     </div>
                 </div>
@@ -128,6 +127,13 @@
                 </a>
             </li>
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="peraturan.php">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Peraturan</span>
+                </a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -154,7 +160,7 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3 bg-warning">
                         <i class="fa fa-bars" style="color: white;"></i>
                     </button>
-                    <a class="navbar-brand mr-auto" href="../index.php">
+                    <a class="navbar-brand mr-auto" href="../../index.php">
                         <img src="asset/img/Logo-Polibatam.png" width="50px" alt="">
                     </a>
                     <!-- Topbar Navbar -->
@@ -191,7 +197,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <?php
-                                include "koneksi.php";
+                                include "../koneksi.php";
                                 $sql5     ="SELECT a.* , b.* , c.no_ruangan , d.nim , d.nama FROM peminjaman a 
                                 JOIN pengembalian b ON b.id_peminjaman=a.id_peminjaman
                                 JOIN ruangan c ON c.id_ruangan = a.id_ruangan
@@ -309,7 +315,7 @@
                             <form class="form-inline my-2 my-lg-0 ml-auto">
                                 <a href="#" id="tambahroom" class="btn btn-warning mb-2 btndata">
                                     <i class="fas fa-plus-circle mr-2"></i>TAMBAH DATA RUANGAN</a>&nbsp;
-                                <a href="laporan_ruangan.php" class="btn btn-warning mb-2 btndata">
+                                <a href="../f_pdf/domruangan.php" class="btn btn-warning mb-2 btndata">
                                     <i class="fas fa-print mr-2"></i>CETAK DATA RUANGAN</a>
                             </form>
                         </div>
@@ -332,7 +338,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include 'koneksi.php';
+                                        include '../koneksi.php';
                                         // query data
                                         $sql = mysqli_query($koneksi, "SELECT*FROM ruangan");
 
@@ -430,7 +436,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="del_ruangan.php" method="post"
+                                                            <form action="../f_hapus/del_ruangan.php" method="post"
                                                                 enctype="multipart/form-data">
                                                                 Apakah anda yakin ingin menghapus data
                                                                 <b><?= $data['no_ruangan']; ?></b>?
@@ -463,7 +469,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="update_ruangan.php" method="post"
+                                                        <form action="../f_update/update_ruangan.php" method="post"
                                                             enctype="multipart/form-data">
                                                             <input type="hidden" name="id_ruangan" id="id_ruangan"
                                                                 value="<?= $data['id_ruangan']?>">
@@ -493,7 +499,7 @@
                                                                     <select class="form-control" id="lantai"
                                                                         name="lantai" value="<?=$data["no_lantai"]?>">
                                                                         <?php
-                                                                        $sql2 = mysqli_query($koneksi, "SELECT * FROM lantai");
+                                                                        $sql2 = mysqli_query($koneksi, "SELECT * FROM lantai ORDER BY no_lantai ASC");
                                                                         while($row=mysqli_fetch_array($sql2)){
                                                                             if ($row['no_lantai'] == $data['lantai']){
                                                                                 $select = "selected";
@@ -621,7 +627,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="simp_ruangan.php" method="post" enctype="multipart/form-data">
+                            <form action="../f_tambah/simp_ruangan.php" method="post" enctype="multipart/form-data">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label>No Ruangan</label>
@@ -639,7 +645,7 @@
                                         <label for="lantai">Lantai</label>
                                         <select class="form-control" id="lantai" name="lantai" required>
                                             <?php
-                                        $sql2 = mysqli_query($koneksi, "SELECT * FROM lantai");
+                                        $sql2 = mysqli_query($koneksi, "SELECT * FROM lantai ORDER BY no_lantai ASC");
                                         while($row=mysqli_fetch_array($sql2)){
                                             echo "<option value='$row[no_lantai]'>$row[no_lantai]</option>\n";
                                         }

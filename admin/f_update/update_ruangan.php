@@ -1,6 +1,6 @@
 <?php
 // include database connection file
-include 'koneksi.php';
+include '../koneksi.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $id_ruangan = $_POST['id_ruangan'];
     $no_ruangan = $_POST['no_ruangan'];
@@ -26,8 +26,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $fotoA = $random.'-'.$foto2;
         $tmpName2 = $_FILES['foto2']['tmp_name'];  
 			if(in_array($ekstensifoto, $ekstensifotoV) == true && in_array($ekstensifoto2, $ekstensifotoV) === true ){
-				$FotoB = move_uploaded_file($tmpName, 'asset/img/'. $fotoB);
-				$FotoD = move_uploaded_file($tmpName2, 'asset/img/'. $fotoA);
+				$FotoB = move_uploaded_file($tmpName, '../view/asset/img/'. $fotoB);
+				$FotoD = move_uploaded_file($tmpName2, '../view/asset/img/'. $fotoA);
 				
 				$query ="UPDATE ruangan SET no_ruangan ='$no_ruangan',nama_ruangan='$nama_ruangan',lantai='$lantai', kapasitas='$kapasitas' ,foto='$fotoB' ,foto2='$fotoA', status='$status' WHERE id_ruangan ='$id_ruangan'";
 				$result = mysqli_query($koneksi, $query);
@@ -36,20 +36,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					die ("Query gagal dijalankan: ".mysqli_error($koneksi).
 						" - ".mysqli_error($koneksi));
 				} else {
-					//tampil alert dan akan redirect ke halaman index.php
-					//silahkan ganti index.php sesuai halaman yang akan dituju
-					if (file_exists('asset/img/'. $fotolama)) {
-						unlink('asset/img/'. $fotolama);
+					if (file_exists('../view/asset/img/'. $fotolama)) {
+						unlink('../view/asset/img/'. $fotolama);
 					}
-					if (file_exists('asset/img/'. $fotolama2)) {
-						unlink('asset/img/'. $fotolama2);
+					if (file_exists('../view/asset/img/'. $fotolama2)) {
+						unlink('../view/asset/img/'. $fotolama2);
 					}
-					echo "<script>alert('Data berhasil diubah.');window.location='ruangan.php';</script>";
+					echo "<script>alert('Data berhasil diubah.');window.location='../view/ruangan.php';</script>";
 				}
 			}
 			else {
 				//jika file ekstensi tidak jpg dan png maka alert ini yang tampil
-				echo "<script>alert('Ekstensi gambar yang boleh hanya jpg atau png.');window.location='ruangan.php';</script>";
+				echo "<script>alert('Ekstensi gambar yang boleh hanya jpg atau png.');window.location='../view/ruangan.php';</script>";
 			}
     }else if($foto != ""){
         $ekstensifotoV = array('png','jpg','jpeg'); //ekstensi file gambar yang bisa diupload 
@@ -60,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $tmpName = $_FILES['foto']['tmp_name'];
 		$foto2 = $fotolama2;
 		if(in_array($ekstensifoto, $ekstensifotoV) == true){
-            $FotoB = move_uploaded_file($tmpName, 'asset/img/'. $fotoB);
+            $FotoB = move_uploaded_file($tmpName, '../view/asset/img/'. $fotoB);
             
             $query ="UPDATE ruangan SET no_ruangan ='$no_ruangan',nama_ruangan='$nama_ruangan',lantai='$lantai', kapasitas='$kapasitas' ,foto='$fotoB' ,foto2='$foto2', status='$status' WHERE id_ruangan ='$id_ruangan'";
             $result = mysqli_query($koneksi, $query);
@@ -69,17 +67,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 die ("Query gagal dijalankan: ".mysqli_error($koneksi).
                     " - ".mysqli_error($koneksi));
             } else {
-                //tampil alert dan akan redirect ke halaman index.php
-                //silahkan ganti index.php sesuai halaman yang akan dituju
-                if (file_exists('asset/img/'. $fotolama)) {
-                    unlink('asset/img/'. $fotolama);
+                if (file_exists('../view/asset/img/'. $fotolama)) {
+                    unlink('../view/asset/img/'. $fotolama);
                 }
-                echo "<script>alert('Data berhasil diubah.');window.location='ruangan.php';</script>";
+                echo "<script>alert('Data berhasil diubah.');window.location='../view/ruangan.php';</script>";
             }
         }
         else {
             //jika file ekstensi tidak jpg dan png maka alert ini yang tampil
-            echo "<script>alert('Ekstensi gambar yang boleh hanya jpg atau png.');window.location='ruangan.php';</script>";
+            echo "<script>alert('Ekstensi gambar yang boleh hanya jpg atau png.');window.location='../view/ruangan.php';</script>";
         }
 		
     }else if($foto2 != ""){
@@ -91,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $tmpName = $_FILES['foto2']['tmp_name'];
 		$foto = $fotolama;
 		if(in_array($ekstensifoto, $ekstensifotoV) == true){
-            $FotoB = move_uploaded_file($tmpName, 'asset/img/'. $fotoA);
+            $FotoB = move_uploaded_file($tmpName, '../view/asset/img/'. $fotoA);
             
             $query ="UPDATE ruangan SET no_ruangan ='$no_ruangan',nama_ruangan='$nama_ruangan',lantai='$lantai', kapasitas='$kapasitas' ,foto='$foto' ,foto2='$fotoA', status='$status' WHERE id_ruangan ='$id_ruangan'";
             $result = mysqli_query($koneksi, $query);
@@ -100,17 +96,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 die ("Query gagal dijalankan: ".mysqli_error($koneksi).
                     " - ".mysqli_error($koneksi));
             } else {
-                //tampil alert dan akan redirect ke halaman index.php
-                //silahkan ganti index.php sesuai halaman yang akan dituju
-                if (file_exists('asset/img/'. $fotolama2)) {
-                    unlink('asset/img/'. $fotolama2);
+                if (file_exists('../view/asset/img/'. $fotolama2)) {
+                    unlink('../view/asset/img/'. $fotolama2);
                 }
-                echo "<script>alert('Data berhasil diubah.');window.location='ruangan.php';</script>";
+                echo "<script>alert('Data berhasil diubah.');window.location='../view/ruangan.php';</script>";
             }
         }
         else {
             //jika file ekstensi tidak jpg dan png maka alert ini yang tampil
-            echo "<script>alert('Ekstensi gambar yang boleh hanya jpg atau png.');window.location='ruangan.php';</script>";
+            echo "<script>alert('Ekstensi gambar yang boleh hanya jpg atau png.');window.location='../view/ruangan.php';</script>";
         }
     }else{
         $foto = $fotolama;
@@ -122,9 +116,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             die ("Query gagal dijalankan: ".mysqli_errno($koneksi).
                             " - ".mysqli_error($koneksi));
         } else {
-          //tampil alert dan akan redirect ke halaman index.php
-          //silahkan ganti index.php sesuai halaman yang akan dituju
-            echo "<script>alert('Data berhasil diubah.');window.location='ruangan.php';</script>";
+            echo "<script>alert('Data berhasil diubah.');window.location='../view/ruangan.php';</script>";
         }
 		
     }

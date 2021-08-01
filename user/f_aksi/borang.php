@@ -1,5 +1,5 @@
 <?php 
-include '../admin/koneksi.php';
+include '../../admin/koneksi.php';
 $id_peminjam        = htmlspecialchars($_POST['id_peminjam']);
 $id_ruangan         = htmlspecialchars($_POST['id_ruangan']);
 $nama_kegiatan      = htmlspecialchars($_POST['nama_kegiatan']);
@@ -24,9 +24,9 @@ $sql2 = mysqli_query($koneksi,"INSERT INTO detail_acara VALUES ('','$id_peminjam
 $sql3 = mysqli_query($koneksi,"INSERT INTO pengembalian VALUES ('','','$id_peminjaman','','','$status')");
 
 if($sql && $sql2 && $sql3 == true){
-    echo "<script>alert('Data berhasil disimpan.');window.location='history.php';</script>";
+    echo "<script>alert('Data berhasil disimpan.');window.location='../view/history.php';</script>";
 }else{
-    echo "<script>alert('Data gagal disimpan.');window.location='peminjaman.php';</script>";
+    echo "<script>alert('Data gagal disimpan.');window.location='../peminjaman.php';</script>";
 
 }
 mysqli_close($koneksi);

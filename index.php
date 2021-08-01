@@ -4,9 +4,9 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="user/asset/assets/css/main.css" />
-	<link rel="stylesheet" href="user/asset/css/bootstrap.min.css" />
-	<link rel="icon" href="admin/asset/img/Logo PR-MB-04.png">
+	<link rel="stylesheet" href="user/view/asset/assets/css/main.css" />
+	<link rel="stylesheet" href="user/view/asset/css/bootstrap.min.css" />
+	<link rel="icon" href="admin/view/asset/img/Logo PR-MB-04.png">
 	<title>PR-MB</title>
 </head>
 
@@ -17,7 +17,6 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<h1><a href="index.html">Rangpol</a></h1>
 			<nav id="nav">
 				<ul>
 					<li class="special">
@@ -26,8 +25,8 @@
 							<ul>
 								<li><a id="mybutton" href="any.php">Dashboard</a>
 								</li>
-								<li><a href="peraturan.php">Peraturan</a></li>
-								<li><a href="admin/login.php">Log In</a></li>
+								<li><a href="#peraturan">Peraturan</a></li>
+								<li><a href="admin/view/login.php">Log In</a></li>
 							</ul>
 						</div>
 					</li>
@@ -38,14 +37,42 @@
 		<!-- Banner -->
 		<section id="banner">
 			<div class="inner">
-				<strong><h2>PR-MB</h2>
-				<h3>Peminjaman Ruangan Jurusan Manajemen Bisnis</h3></strong>
+				<strong>
+					<h2>PR-MB</h2>
+					<h3>Peminjaman Ruangan Jurusan Manajemen Bisnis</h3>
+				</strong>
 				<p>Anda Dapat Melakukan<br />
 					Peminjaman Ruangan <br />
 					Secara Cepat Tanpa Ribet</p>
 			</div>
 		</section>
-
+		<section id="peraturan">
+			<!-- Begin Page Content -->
+			<div class="container-fluid">
+				<!-- Content Row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<form>
+							<div class="form-group row">
+								<div class="col-lg-12">
+									<div class="row">
+										<?php 
+                                            include 'admin/koneksi.php';
+                                            $sql5 = mysqli_query($koneksi,'SELECT*FROM peraturan');
+                                            $data5 = mysqli_fetch_array($sql5);
+                                            ?>
+										<div class="col-lg-11 p-5 ml-5 mt-5 rounded" id="isi">
+											<strong class="h3"
+												style="font-family: 'Jost', sans-serif;"><?=$data5['judul']?></strong>
+											<p align="left"><?=htmlspecialchars_decode($data5['isi_peraturan']) ?></p>
+										</div>
+									</div>
+								</div>
+							</div>
+					</div>
+					<!-- End of Main Content -->
+				</div>
+		</section>
 		<!-- Footer -->
 		<footer id="footer">
 			<ul>
@@ -71,15 +98,23 @@
 		body {
 			color: white;
 		}
+
+		#isi {
+			background-color: #1d242a;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
 	</style>
 	<!-- Scripts -->
-	<script src="user/asset/assets/js/jquery.min.js"></script>
-	<script src="user/asset/assets/js/jquery.scrollex.min.js"></script>
-	<script src="user/asset/assets/js/jquery.scrolly.min.js"></script>
-	<script src="user/asset/assets/js/browser.min.js"></script>
-	<script src="user/asset/assets/js/breakpoints.min.js"></script>
-	<script src="user/asset/assets/js/util.js"></script>
-	<script src="user/asset/assets/js/main.js"></script>
+	<script src="user/view/asset/assets/js/jquery.min.js"></script>
+	<script src="user/view/asset/assets/js/jquery.scrollex.min.js"></script>
+	<script src="user/view/asset/assets/js/jquery.scrolly.min.js"></script>
+	<script src="user/view/asset/assets/js/browser.min.js"></script>
+	<script src="user/view/asset/assets/js/breakpoints.min.js"></script>
+	<script src="user/view/asset/assets/js/util.js"></script>
+	<script src="user/view/asset/assets/js/main.js"></script>
 </body>
 
 </html>
