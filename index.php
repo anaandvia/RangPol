@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="user/view/asset/assets/css/main.css" />
+	<link rel="stylesheet" href="user/view/asset/css/main.css" />
 	<link rel="stylesheet" href="user/view/asset/css/bootstrap.min.css" />
 	<link rel="icon" href="admin/view/asset/img/Logo PR-MB-04.png">
 	<title>PR-MB</title>
@@ -108,13 +108,13 @@
 		}
 	</style>
 	<!-- Scripts -->
-	<script src="user/view/asset/assets/js/jquery.min.js"></script>
-	<script src="user/view/asset/assets/js/jquery.scrollex.min.js"></script>
-	<script src="user/view/asset/assets/js/jquery.scrolly.min.js"></script>
-	<script src="user/view/asset/assets/js/browser.min.js"></script>
-	<script src="user/view/asset/assets/js/breakpoints.min.js"></script>
-	<script src="user/view/asset/assets/js/util.js"></script>
-	<script src="user/view/asset/assets/js/main.js"></script>
+	<script src="user/view/asset/js/jquery.min.js"></script>
+	<script src="user/view/asset/js/jquery.scrollex.min.js"></script>
+	<script src="user/view/asset/js/jquery.scrolly.min.js"></script>
+	<script src="user/view/asset/js/browser.min.js"></script>
+	<script src="user/view/asset/js/breakpoints.min.js"></script>
+	<script src="user/view/asset/js/util.js"></script>
+	<script src="user/view/asset/js/main.js"></script>
 </body>
 
 </html>

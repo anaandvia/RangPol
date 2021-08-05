@@ -9,6 +9,6 @@
 	else if ($level=="admin") {
 		header ('location:admin/view/index.php');
 	}else {
-		echo '<script language="javascript">alert("Silahkan Login Terlebih Dahulu!"); document.location="admin/login.php";</script>';
+		echo '<script language="javascript">alert("Silahkan Login Terlebih Dahulu!"); document.location="admin/view/login.php";</script>';
 	}
 ?>

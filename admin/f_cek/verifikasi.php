@@ -10,7 +10,7 @@
             $sql =  "UPDATE peminjam set v_email=1 where id_peminjam=$id";
             $query = mysqli_query($koneksi,$sql);
             if($query){
-                header("location:../view/v_berhasil.php");
+                header("location:../view/v_berhasil.php?code=".$code);
             }else{
                 echo "<script>alert('Verifikasi Gagal'.$query);window.location='../view/login.php';</script>";
             }
